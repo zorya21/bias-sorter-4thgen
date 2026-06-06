@@ -174,6 +174,10 @@ function showGroup(side, group) {
 
 // 统一处理选择
 function makeChoice(choice) {
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
+
     if (currentResolve) {
         let resolve = currentResolve;
         currentResolve = null;
