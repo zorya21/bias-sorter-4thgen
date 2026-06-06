@@ -174,6 +174,8 @@ function showGroup(side, group) {
 
 // 统一处理选择
 function makeChoice(choice) {
+    clearFocus();
+
     if (currentResolve) {
         let resolve = currentResolve;
         currentResolve = null;
@@ -202,6 +204,8 @@ function chooseBoth() {
 
 // 返回上一个选择
 function undoChoice() {
+    clearFocus();
+
     if (choices.length === 0) {
         alert("现在已经是第一个选择了，不能再返回啦！");
         return;
@@ -287,4 +291,11 @@ function restartSorter() {
     document.getElementById("ready-page").classList.add("hidden");
     document.getElementById("sorter-page").classList.add("hidden");
     document.getElementById("start-page").classList.remove("hidden");
+}
+
+
+function clearFocus() {
+    if (document.activeElement) {
+        document.activeElement.blur();
+    }
 }
