@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Bias Sorter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- 开始页面 -->
+        <div id="start-page">
+            <h1>这是一个小四四的Bias Sorter</h1>
+            <p>点击开始，然后选择你更喜欢的小四四吧！</p>
+            <button onclick="startSorter()">开始排序</button>
+        </div>
+
+        <!-- 排序页面 -->
+        <div id="sorter-page" class="hidden">
+            <div class="battle-area">
+
+                <div class="card" onclick="chooseLeft()">
+                    <img id="left-img" src="" alt="left image">
+                    <h2 id="left-name"></h2>
+                </div>
+
+                <div class="middle-area">
+                    <div class="vs">VS</div>
+                    <button class="both-button" onclick="chooseBoth()">两个都喜欢</button>
+                    <button class="undo-button" onclick="undoChoice()">返回上一个</button>
+                </div>
+
+                <div class="card" onclick="chooseRight()">
+                    <img id="right-img" src="" alt="right image">
+                    <h2 id="right-name"></h2>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 查看排名前的页面 -->
+        <div id="ready-page" class="hidden">
+            <h1>排序完成！</h1>
+            <p>点击下面按钮查看最终排名。</p>
+            <button onclick="showFinalRanking()">查看排名</button>
+            <br><br>
+            <button onclick="undoChoice()">返回上一个选择</button>
+        </div>
+
+        <!-- 最终结果页面 -->
+        <div id="result-page" class="hidden">
+            <h1>最终排名</h1>
+            <div id="result-list"></div>
+            <button onclick="restartSorter()">重新开始</button>
+        </div>
+
+    </div>
+
+    <!-- Flask 传来的 items 数据 -->
+    <script id="items-data" type="application/json">
+        {{ items | tojson }}
+    </script>
+
+    <script>
+        window.items = JSON.parse(
+            document.getElementById("items-data").textContent
+        );
+    </script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
