@@ -160,15 +160,8 @@ function showGroup(side, group) {
 
     imgElement.src = "/static/images/" + firstItem.image;
 
-    let names = group.map(function(index) {
-        return sorterItems[index].name;
-    }).join(" / ");
-
-    if (group.length > 1) {
-        nameElement.innerText = names + "（并列）";
-    } else {
-        nameElement.innerText = names;
-    }
+    // 只显示当前这个人的名字
+    nameElement.innerText = firstItem.name;
 }
 
 
