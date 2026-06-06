@@ -40,6 +40,9 @@ button {
     cursor: pointer;
     background-color: white;
     color: black;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .battle-area {
@@ -60,31 +63,6 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 只有电脑鼠标悬停时才放大 */
-@media (hover: hover) and (pointer: fine) {
-    .card:hover {
-        transform: scale(1.05);
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .both-button:hover,
-    .undo-button:hover,
-    button:hover {
-        background-color: #ffd6e7;
-    }
-}
-
-/* 手机上点击时只给一个很短的按压反馈 */
-.card:active {
-    transform: scale(0.98);
-}
-
-button:active,
-.both-button:active,
-.undo-button:active {
-    transform: scale(0.96);
-}
-
 .card img {
     width: 230px;
     height: 300px;
@@ -95,6 +73,79 @@ button:active,
 .vs {
     font-size: 40px;
     font-weight: bold;
+}
+
+.middle-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.both-button,
+.undo-button {
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 18px;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 只有电脑端鼠标悬停时才有 hover 效果 */
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: scale(1.05);
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    button:hover,
+    .both-button:hover,
+    .undo-button:hover {
+        background-color: #ffd6e7;
+    }
+}
+
+/* 手机端：禁止 hover 残留 */
+@media (hover: none) {
+    .card:hover {
+        transform: none;
+        background-color: rgba(255, 255, 255, 0.18);
+    }
+
+    button:hover,
+    .both-button:hover,
+    .undo-button:hover {
+        background-color: white;
+    }
+}
+
+/* 手机端点击时只短暂缩小 */
+.card:active {
+    transform: scale(0.98);
+}
+
+button:active,
+.both-button:active,
+.undo-button:active {
+    transform: scale(0.96);
+    background-color: white;
+}
+
+/* 防止手机点击后按钮一直保持 focus 状态 */
+button:focus,
+.both-button:focus,
+.undo-button:focus {
+    outline: none;
+    background-color: white;
+}
+
+#ready-page {
+    text-align: center;
 }
 
 #result-list {
@@ -124,59 +175,4 @@ button:active,
     font-size: 24px;
     font-weight: bold;
     width: 40px;
-}
-
-.middle-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
-}
-
-.both-button,
-.undo-button {
-    padding: 10px 18px;
-    font-size: 16px;
-    border-radius: 18px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    color: black;
-}
-
-#ready-page {
-    text-align: center;
-}
-
-/* 只有电脑鼠标悬停时，按钮才变粉色 */
-@media (hover: hover) and (pointer: fine) {
-    button:hover,
-    .both-button:hover,
-    .undo-button:hover {
-        background-color: #ffd6e7;
-    }
-}
-
-/* 手机点击按钮时，不要一直保持粉色 */
-button:focus:not(:focus-visible),
-.both-button:focus:not(:focus-visible),
-.undo-button:focus:not(:focus-visible) {
-    background-color: white;
-    outline: none;
-}
-
-/* 手机上的短暂点击反馈 */
-button:active,
-.both-button:active,
-.undo-button:active {
-    transform: scale(0.96);
-    background-color: #ffd6e7;
-}
-
-/* 防止手机点击高亮 */
-button,
-.both-button,
-.undo-button {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
 }
