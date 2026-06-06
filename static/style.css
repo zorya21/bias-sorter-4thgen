@@ -58,12 +58,35 @@ button:hover {
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.18);
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.15s;
+
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    background-color: rgba(255, 255, 255, 0.3);
+/* 只有电脑鼠标悬停时才放大 */
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: scale(1.05);
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .both-button:hover,
+    .undo-button:hover,
+    button:hover {
+        background-color: #ffd6e7;
+    }
+}
+
+/* 手机上点击时只给一个很短的按压反馈 */
+.card:active {
+    transform: scale(0.98);
+}
+
+button:active,
+.both-button:active,
+.undo-button:active {
+    transform: scale(0.96);
 }
 
 .card img {
