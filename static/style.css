@@ -82,6 +82,9 @@ button {
     gap: 18px;
 }
 
+
+/* 按钮基础样式 */
+button,
 .both-button,
 .undo-button {
     padding: 10px 18px;
@@ -96,7 +99,14 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
-/* 电脑端：鼠标移上去才变粉色 */
+/* 只取消 focus 外框，不改背景颜色 */
+button:focus,
+.both-button:focus,
+.undo-button:focus {
+    outline: none;
+}
+
+/* 电脑端：鼠标移上去变粉色 */
 @media (hover: hover) and (pointer: fine) {
     button:hover,
     .both-button:hover,
@@ -110,27 +120,29 @@ button {
     }
 }
 
-/* 手机端：点击时只短暂缩小，不保持粉色 */
+/* 手机端：点击时只短暂缩小 */
 button:active,
 .both-button:active,
 .undo-button:active {
     transform: scale(0.96);
 }
 
-/* 防止手机点击后按钮一直保持 focus 状态 */
-button:focus,
-.both-button:focus,
-.undo-button:focus {
-    outline: none;
-    background-color: white;
+.card:active {
+    transform: scale(0.98);
 }
 
-/* 去掉手机点击时的蓝色/灰色高亮 */
-button,
-.both-button,
-.undo-button {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
+/* 手机端：点击完以后恢复白色 */
+@media (hover: none) and (pointer: coarse) {
+    button:hover,
+    .both-button:hover,
+    .undo-button:hover {
+        background-color: white;
+    }
+
+    .card:hover {
+        transform: none;
+        background-color: rgba(255, 255, 255, 0.18);
+    }
 }
 
 #ready-page {
