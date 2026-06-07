@@ -32,17 +32,33 @@ h1 {
     margin-bottom: 20px;
 }
 
-button {
-    padding: 12px 28px;
+p {
     font-size: 18px;
+}
+
+/* 所有按钮的基础样式 */
+button,
+.both-button,
+.undo-button {
+    padding: 10px 18px;
+    font-size: 16px;
+    border-radius: 18px;
     border: none;
-    border-radius: 20px;
     cursor: pointer;
     background-color: white;
     color: black;
 
+    transition: 0.15s;
+
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+}
+
+/* 只取消 focus 外框，不改背景颜色 */
+button:focus,
+.both-button:focus,
+.undo-button:focus {
+    outline: none;
 }
 
 .battle-area {
@@ -57,6 +73,7 @@ button {
     border-radius: 25px;
     background-color: rgba(255, 255, 255, 0.18);
     cursor: pointer;
+
     transition: 0.15s;
 
     touch-action: manipulation;
@@ -68,6 +85,11 @@ button {
     height: 300px;
     object-fit: cover;
     border-radius: 20px;
+}
+
+.card h2 {
+    font-size: 24px;
+    margin-bottom: 0;
 }
 
 .vs {
@@ -82,75 +104,12 @@ button {
     gap: 18px;
 }
 
-
-/* 按钮基础样式 */
-button,
-.both-button,
-.undo-button {
-    padding: 10px 18px;
-    font-size: 16px;
-    border-radius: 18px;
-    border: none;
-    cursor: pointer;
-    background-color: white;
-    color: black;
-
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* 只取消 focus 外框，不改背景颜色 */
-button:focus,
-.both-button:focus,
-.undo-button:focus {
-    outline: none;
-}
-
-/* 电脑端：鼠标移上去变粉色 */
-@media (hover: hover) and (pointer: fine) {
-    button:hover,
-    .both-button:hover,
-    .undo-button:hover {
-        background-color: #ffd6e7;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        background-color: rgba(255, 255, 255, 0.3);
-    }
-}
-
-/* 手机端：点击时只短暂缩小 */
-button:active,
-.both-button:active,
-.undo-button:active {
-    transform: scale(0.96);
-}
-
-.card:active {
-    transform: scale(0.98);
-}
-
-/* 手机端：点击完以后恢复白色 */
-@media (hover: none) and (pointer: coarse) {
-    button:hover,
-    .both-button:hover,
-    .undo-button:hover {
-        background-color: white;
-    }
-
-    .card:hover {
-        transform: none;
-        background-color: rgba(255, 255, 255, 0.18);
-    }
-}
-
 #ready-page {
     text-align: center;
 }
 
 #result-list {
-    width: 400px;
+    width: 420px;
     margin: 20px auto;
 }
 
@@ -173,7 +132,101 @@ button:active,
 }
 
 .rank {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
-    width: 40px;
+    width: 90px;
+}
+
+/* 电脑端：鼠标移上去才有效果 */
+@media (hover: hover) and (pointer: fine) {
+    button:hover,
+    .both-button:hover,
+    .undo-button:hover {
+        background-color: #ffd6e7;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+}
+
+/* 手机端：防止点击后一直保持 hover 状态 */
+@media (hover: none) and (pointer: coarse) {
+    button:hover,
+    .both-button:hover,
+    .undo-button:hover {
+        background-color: white;
+    }
+
+    .card:hover {
+        transform: none;
+        background-color: rgba(255, 255, 255, 0.18);
+    }
+}
+
+/* 点击时短暂缩小 */
+button:active,
+.both-button:active,
+.undo-button:active {
+    transform: scale(0.96);
+}
+
+.card:active {
+    transform: scale(0.98);
+}
+
+/* 手机屏幕适配 */
+@media screen and (max-width: 700px) {
+    h1 {
+        font-size: 36px;
+    }
+
+    .battle-area {
+        gap: 12px;
+    }
+
+    .card {
+        width: 135px;
+        padding: 10px;
+        border-radius: 18px;
+    }
+
+    .card img {
+        width: 120px;
+        height: 170px;
+        border-radius: 14px;
+    }
+
+    .card h2 {
+        font-size: 16px;
+    }
+
+    .vs {
+        font-size: 24px;
+    }
+
+    .middle-area {
+        gap: 10px;
+    }
+
+    button,
+    .both-button,
+    .undo-button {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    #result-list {
+        width: 90vw;
+    }
+
+    .result-item {
+        padding: 10px;
+    }
+
+    .rank {
+        width: 75px;
+        font-size: 18px;
+    }
 }
